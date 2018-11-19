@@ -64,6 +64,11 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - new macro `loadMoreButton` is integrated into `@ShopsysShop/Front/Inline/Paginator/paginator.html.twig`, update files based on commit from [`ajaxMoreLoader is updated and generalized`](https://github.com/shopsys/shopsys/pull/579/files)
 - *(optional)* [#645 SVG icons in generated document](https://github.com/shopsys/shopsys/pull/645)
     - to display svg icons collection correctly in grunt generated document for all browsers please add `src/Shopsys/ShopBundle/Resources/views/Grunt/htmlDocumentTemplate.html` file and update `src/Shopsys/ShopBundle/Resources/views/Grunt/gruntfile.js.twig` based on changes in this pull request
+- [#610 ProductOnCurrentDomainFacade: rename getPaginatedProductDetails* methods](https://github.com/shopsys/shopsys/pull/610)
+    - change usages of the renamed methods of `ProductOnCurrentDomainFacade`
+        - from `getPaginatedProductDetailsInCategory` to `getPaginatedProductsInCategory`
+        - from `getPaginatedProductDetailsForBrand` to `getPaginatedProductsForBrand`
+        - from `getPaginatedProductDetailsForSearch` to `getPaginatedProductsForSearch`
 
 ### [shopsys/shopsys]
 - [#651 It's possible to add index prefix to elastic search](https://github.com/shopsys/shopsys/pull/651)
