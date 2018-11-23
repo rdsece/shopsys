@@ -21,4 +21,4 @@ parameters:
 
     secret: ThisTokenIsNotSoSecretChangeIt
     trusted_proxies:
-        - "127.0.0.1"
+        - "222.123.11.54"
