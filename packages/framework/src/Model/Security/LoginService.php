@@ -70,5 +70,8 @@ class LoginService
         // dispatch the login event
         $event = new InteractiveLoginEvent($request, $token);
         $this->traceableEventDispatcher->dispatch(SecurityEvents::INTERACTIVE_LOGIN, $event);
+
+        //migrate session
+        $request->getSession()->migrate();
     }
 }
