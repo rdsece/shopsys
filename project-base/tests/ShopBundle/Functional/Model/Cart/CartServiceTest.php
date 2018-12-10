@@ -146,14 +146,12 @@ class CartServiceTest extends FunctionalTestCase
         $product1 = $this->createProduct();
         $product2 = $this->createProduct();
 
-
         // Cart merging is bound to Product Id
         $reflectionClass = new ReflectionClass(Product::class);
         $property = $reflectionClass->getProperty('id');
         $property->setAccessible(true);
         $property->setValue($product1, 1);
         $property->setValue($product2, 2);
-
 
         $cartIdentifier1 = 'abc123';
         $cartIdentifier2 = 'def456';
