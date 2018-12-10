@@ -2,6 +2,7 @@
 
 namespace Tests\ShopBundle\Functional\Model\Cart;
 
+use ReflectionClass;
 use Shopsys\FrameworkBundle\Model\Cart\Cart;
 use Shopsys\FrameworkBundle\Model\Cart\CartService;
 use Shopsys\FrameworkBundle\Model\Cart\Item\CartItem;
@@ -145,6 +146,15 @@ class CartServiceTest extends FunctionalTestCase
         $product1 = $this->createProduct();
         $product2 = $this->createProduct();
 
+
+        // Cart merging is bound to Product Id
+        $reflectionClass = new ReflectionClass(Product::class);
+        $property = $reflectionClass->getProperty('id');
+        $property->setAccessible(true);
+        $property->setValue($product1, 1);
+        $property->setValue($product2, 2);
+
+
         $cartIdentifier1 = 'abc123';
         $cartIdentifier2 = 'def456';
         $customerIdentifier1 = new CustomerIdentifier($cartIdentifier1);
@@ -167,7 +177,10 @@ class CartServiceTest extends FunctionalTestCase
             }
         }
 
-        $this->assertSame(2, $mergingCart->getItemsCount());
+        $this->assertSame(2, $mainCart->getItemsCount());
+
+        $this->assertSame(5, $mainCart->getItems()[0]->getQuantity());
+        $this->assertSame(1, $mainCart->getItems()[1]->getQuantity());
     }
 
     /**
