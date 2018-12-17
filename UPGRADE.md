@@ -82,6 +82,8 @@ There is a list of all the repositories maintained by monorepo, changes in log b
 - *(optional)* [#673 added support for custom prefixing in redis](https://github.com/shopsys/shopsys/pull/673)
     - add default value (e.g. empty string) for `REDIS_PREFIX` env variable to your `app/config/parameters.yml.dist`, `app/config/parameters.yml` (if you already have your parameters file), and to your `docker/php-fpm/Dockerfile`
     - modify your Redis configuration (`app/config/packages/snc_redis.yml`) by prefixing all the prefix values with the value of the env variable (`%env(REDIS_PREFIX)%`)
+- [#690 refactored checking duplicate e-mail to User constructor](https://github.com/shopsys/shopsys/pull/690)
+    - If you extend `User`, change your `User` entity constructor to `__construct(UserData $userData, BillingAddress $billingAddress, ?DeliveryAddress $deliveryAddress, ?self $userByEmail)`
 
 ### [shopsys/shopsys]
 - [#651 It's possible to add index prefix to elastic search](https://github.com/shopsys/shopsys/pull/651)

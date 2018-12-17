@@ -2,7 +2,9 @@
 
 namespace Shopsys\FrameworkBundle\Form\Constraints;
 
+use Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade;
 use Shopsys\FrameworkBundle\Component\Domain\Domain;
+use Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorFrontSecurityFacade;
 use Shopsys\FrameworkBundle\Model\Customer\CustomerFacade;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -20,15 +22,31 @@ class UniqueEmailValidator extends ConstraintValidator
     private $domain;
 
     /**
+     * @var \Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorFrontSecurityFacade
+     */
+    private $administratorFrontSecurityFacade;
+
+    /**
+     * @var \Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade
+     */
+    private $adminDomainTabsFacade;
+
+    /**
      * @param \Shopsys\FrameworkBundle\Model\Customer\CustomerFacade $customerFacade
      * @param \Shopsys\FrameworkBundle\Component\Domain\Domain $domain
+     * @param \Shopsys\FrameworkBundle\Model\Administrator\Security\AdministratorFrontSecurityFacade $administratorFrontSecurityFacade
+     * @param \Shopsys\FrameworkBundle\Component\Domain\AdminDomainTabsFacade $adminDomainTabsFacade
      */
     public function __construct(
         CustomerFacade $customerFacade,
-        Domain $domain
+        Domain $domain,
+        AdministratorFrontSecurityFacade $administratorFrontSecurityFacade,
+        AdminDomainTabsFacade $adminDomainTabsFacade
     ) {
         $this->customerFacade = $customerFacade;
         $this->domain = $domain;
+        $this->administratorFrontSecurityFacade = $administratorFrontSecurityFacade;
+        $this->adminDomainTabsFacade = $adminDomainTabsFacade;
     }
 
     /**
@@ -42,7 +60,12 @@ class UniqueEmailValidator extends ConstraintValidator
         }
 
         $email = (string)$value;
-        $domainId = $this->domain->getId();
+
+        if ($this->administratorFrontSecurityFacade->isAdministratorLogged() === true && $this->administratorFrontSecurityFacade->isAdministratorLoggedAsCustomer() !== false) {
+            $domainId = $this->adminDomainTabsFacade->getSelectedDomainId();
+        } else {
+            $domainId = $this->domain->getId();
+        }
 
         if ($constraint->ignoredEmail != $value && $this->customerFacade->findUserByEmailAndDomain($email, $domainId) !== null) {
             $this->context->addViolation(
