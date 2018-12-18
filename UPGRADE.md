@@ -59,6 +59,7 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - please read upgrade instructions in [separate article](docs/upgrade/services-removal.md)
 - [#688 renamed AdvancedSearchFacade to AdvancedSearchProductFacade](https://github.com/shopsys/shopsys/pull/688)
     - change usages of `AdvancedSearchFacade` to `AdvancedSearchProductFacade`
+- *(optional)* drop `--verbose` from all easy-coding-standard phing targets (look for `${path.ecs.executable}`) as the package was upgraded in [#623](https://github.com/shopsys/shopsys/pull/623/) and now outputs name of each file checked in the verbose mode
 
 ### [shopsys/project-base]
 - [#697 fix unnecessary log error after login as admin on second PC](https://github.com/shopsys/shopsys/pull/697)
