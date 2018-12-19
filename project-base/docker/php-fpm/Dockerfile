@@ -100,7 +100,7 @@ FROM base as production
 
 COPY --chown=www-data:www-data / /var/www/html
 
-RUN composer install --optimize-autoloader --no-interaction --no-progress --no-dev
+RUN composer install --optimize-autoloader --no-interaction --no-progress --no-dev --ignore-platform-reqs
 
 RUN php phing composer npm dirs-create assets
 
@@ -110,7 +110,7 @@ FROM base as ci
 
 COPY --chown=www-data:www-data / /var/www/html
 
-RUN composer install --optimize-autoloader --no-interaction --no-progress --dev
+RUN composer install --optimize-autoloader --no-interaction --no-progress --dev --ignore-platform-reqs
 
 RUN php phing composer-dev npm dirs-create test-dirs-create assets standards tests-static tests-acceptance-build
 

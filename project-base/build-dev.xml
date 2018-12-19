@@ -43,6 +43,7 @@
             checkreturn="true"
         >
             <arg value="install"/>
+            <arg value="--ignore-platform-reqs" />
         </exec>
     </target>
 

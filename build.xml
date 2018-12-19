@@ -30,6 +30,7 @@
         </if>
         <exec executable="${path.composer.executable}" logoutput="true" passthru="true" checkreturn="true">
             <arg value="${composer.action}"/>
+            <arg value="--ignore-platform-reqs" />
         </exec>
         <phingcall target="composer-check" />
     </target>
