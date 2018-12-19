@@ -317,11 +317,14 @@
 
     <target name="phpstan" depends="tests-acceptance-build" description="Performs static analysis of PHP files using PHPStan.">
         <exec
-            executable="${path.phpstan.executable}"
+            executable="${path.php.executable}"
             logoutput="true"
             passthru="true"
             checkreturn="true"
         >
+            <arg value="-d" />
+            <arg value="memory_limit=-1" />
+            <arg value="${path.phpstan.executable}"/>
             <arg value="analyze"/>
 
             <arg value="-c"/>
