@@ -65,7 +65,7 @@ kind of recipe by which final image is cooked.
 
 Dockerfile example command:
 ```dockerfile
-FROM php:7.2-fpm-alpine
+FROM php:7.3-fpm-alpine
 ```
 * The `FROM` instruction specifies the base image, from which you are building
 

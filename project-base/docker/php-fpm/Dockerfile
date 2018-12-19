@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-alpine as base
+FROM php:7.3-fpm-alpine as base
 
 ARG project_root=.
 ENV REDIS_PREFIX=''

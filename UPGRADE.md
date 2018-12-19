@@ -87,6 +87,9 @@ There is a list of all the repositories maintained by monorepo, changes in log b
 
 ### [shopsys/shopsys]
 - [#651 It's possible to add index prefix to elastic search](https://github.com/shopsys/shopsys/pull/651)
+    - either rebuild your Docker images with `docker-compose up -d --build` or add `ELASTIC_SEARCH_INDEX_PREFIX=''` to your `.env` files in the microservice root directories, otherwise all requests to the microservices will throw `EnvNotFoundException`
+- [#694 PHP 7.3 support](https://github.com/shopsys/shopsys/pull/694)
+    - rebuild your Docker images with `docker-compose up -d --build --force-recreate`
     - either rebuild your Docker images with `docker-compose up -d --build` or add `ELASTIC_SEARCH_INDEX_PREFIX=''` to your `.env` files in the microservice root directories, otherwise all requests to the microservices will throw `EnvNotFoundException` 
 - [#679 webserver container starts after php-fpm is started](https://github.com/shopsys/shopsys/pull/679)
     - add `depends_on: php-fpm` into `webserver` service of your `docker-compose.yml` file so webserver will not fail on error `host not found in upstream php-fpm:9000`
