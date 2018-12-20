@@ -2,6 +2,8 @@
 
 Keep in mind that upgrade instructions are written for users that do not understand our system well, so more clear they are, more useful they are.
 
+## Overview
+
 * Our users work in a clone of project-base and even when they do the upgrade, their project-base is not upgraded.
   Every time you change/add anything in project-base, write upgrade instruction how to repeat this work
     * for anything with docker, phing, frontend, config, ...
@@ -17,3 +19,54 @@ Keep in mind that upgrade instructions are written for users that do not underst
 * Write instructions
     * Good example: *"Do this, then that"*
     * Bad example: *"This was done, this was changed"*
+
+## Files related to upgrade
+
+The main file to start looking for instructions must be [`UPGRADE.md`](../../UPGRADE.md).
+
+This file contains information for the contributors in the form of the link to [`docs/contributing/UPGRADE.md`](./UPGRADE.md) file.
+
+Instructions for developers building a project based on project-base should follow.
+First, there must be general information about upgrading with recommended steps and a typical upgrade sequence,
+following with a list of links to upgrade guides for each version.
+These versions should be placed in a [`docs/upgrade/`](../../docs/upgrade) folder.
+
+## Structure of upgrade files
+
+Each upgrade file must have link to main UPGRADE.md file with general informations about upgrade and may contain one or more of following main sections:
+
+* shopsys/framework
+* shopsys/coding-standards
+* shopsys/form-types-bundle
+* shopsys/http-smoke-testing
+* shopsys/migrations
+* shopsys/monorepo-tools
+* shopsys/plugin-interface
+* shopsys/product-feed-google
+* shopsys/product-feed-heureka
+* shopsys/product-feed-heureka-delivery
+* shopsys/product-feed-zbozi
+* shopsys/microservice-product-search
+* shopsys/microservice-product-search-export
+
+Each section must contain instructions relevant only to the package they cover.
+
+Each step should have a link to the related pull request and may contain an additional link or links to make instruction more clear.
+
+### Section shopsys/framework
+
+Because this section is expected to be the longest, it should contain a finer division into one of the following sub-sections:
+
+* Infrastructure
+    * related with Docker, Kubernetes, Environment settings
+    * instruction to rebuild images must occur only once
+* Configuration
+    * related with parameters, YML configuration files
+* Tools
+    * Phing, Composer, PHPStan, PHPUnit
+* Database migrations
+    * Which database changes were introduced in a current version
+* Security
+    * Important security upgrades
+* Application
+    * Changes in a code that may require some changes in a particular implementation.
