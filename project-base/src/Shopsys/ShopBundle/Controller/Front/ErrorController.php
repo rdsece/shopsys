@@ -185,11 +185,11 @@ class ErrorController extends FrontBaseController
     private function createUnableToResolveDomainResponse(Request $request): Response
     {
         $url = $request->getSchemeAndHttpHost() . $request->getBasePath();
-        $content = sprintf("You are trying to access an unknown domain '%s' ", $url);
+        $content = sprintf("You are trying to access an unknown domain '%s'. ", $url);
 
         if (EnvironmentType::TEST === Environment::getEnvironment(false)) {
             $overwriteDomainUrl = $this->getParameter('overwrite_domain_url');
-            $content .= sprintf("TEST environment is active, current domain url is %s", $overwriteDomainUrl);
+            $content .= sprintf("TEST environment is active, current domain url is '%s'. ", $overwriteDomainUrl);
         }
 
         return new Response($content, Response::HTTP_INTERNAL_SERVER_ERROR);
