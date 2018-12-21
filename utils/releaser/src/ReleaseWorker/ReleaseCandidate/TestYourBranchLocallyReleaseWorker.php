@@ -17,7 +17,7 @@ final class TestYourBranchLocallyReleaseWorker extends AbstractShopsysReleaseWor
      */
     public function getDescription(Version $version): string
     {
-        return 'Test your branch locally - running composer-dev, standards and tests - this might take a few minutes"';
+        return 'Test your branch locally - running composer-dev, standards and tests - this might take a few minutes';
     }
 
     /**
@@ -38,7 +38,7 @@ final class TestYourBranchLocallyReleaseWorker extends AbstractShopsysReleaseWor
             $this->processRunner->run('php phing composer-dev standards tests', true);
         } catch (\Symfony\Component\Process\Exception\ProcessFailedException $ex) {
             $this->symfonyStyle->caution($ex->getProcess()->getOutput());
-            $this->symfonyStyle->note('A problem occurred, check the output a fix it please.');
+            $this->symfonyStyle->note('A problem occurred, check the output and fix it please.');
             $runChecksAgain = $this->symfonyStyle->ask('Run the checks again?', 'yes');
             if ($runChecksAgain) {
                 $this->work($version);
