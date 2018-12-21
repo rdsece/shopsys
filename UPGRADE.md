@@ -84,6 +84,12 @@ There is a list of all the repositories maintained by monorepo, changes in log b
     - modify your Redis configuration (`app/config/packages/snc_redis.yml`) by prefixing all the prefix values with the value of the env variable (`%env(REDIS_PREFIX)%`)
 - [#679 webserver container starts after php-fpm is started](https://github.com/shopsys/shopsys/pull/679)
     - add `depends_on: php-fpm` into `webserver` service of your `docker-compose.yml` file so webserver will not fail on error `host not found in upstream php-fpm:9000`
+- *(optional)* [#703 improved frontend performace](https://github.com/shopsys/shopsys/pull/703)
+    - in your `base.html.twig` template move non-essential javascript files at the bottom of a page.
+    We cannot provide exact instructions as we don't know your implementation.
+    For an example take a look at [changes](https://github.com/shopsys/shopsys/pull/703/files#diff-4c948fb55a9ceba2f3070e572ac506f3)
+    - you can use new simplified jquery-ui.min.js file
+    - please be aware, that if your implementation use more component from jQueryUI, you have to be extra careful
 
 ### [shopsys/shopsys]
 - [#651 It's possible to add index prefix to elastic search](https://github.com/shopsys/shopsys/pull/651)
