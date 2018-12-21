@@ -24,7 +24,7 @@ The whole release process is divided into 3 stages that are run separately:
 
 ## Release command
 
-To perform a desired stage, run the following command and follow instructions that you'll be asked in console.
+To perform a desired stage, run the following command in the `php-fpm` docker container and follow instructions that you'll be asked in console.
 ```
 vendor/bin/monorepo-builder release <release-number> --stage <stage> -v
 ```
