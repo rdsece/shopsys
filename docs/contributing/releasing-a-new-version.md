@@ -50,5 +50,5 @@ However, there is a workaround - you can add new `docker-sync` volume just for g
 - Releasing a stage is a continuously running process so do not exit your CLI if it is not necessary.
 - Do not get a fright when you see "Version 'XY' is now released!" message after a stage is finished - this is a default behavior of `monorepo-builder` package
 - When updating mutual dependencies in shopsys packages, the dependency on `coding-standards` is kept untouched in `http-smoke-testing` package
-as it is dependent on an obsolete version of the `coding-standards` package. See `Shopsys\Releaser\DependencyUpdater`. 
+as it is dependent on an obsolete version of the `coding-standards` package. See `Shopsys\Releaser\DependencyUpdater`.
 This behaviour should be discarded once the `http-smoke-testing` is dependent on `dev-master` version of `coding-standards` like all the other Shopsys packages.
